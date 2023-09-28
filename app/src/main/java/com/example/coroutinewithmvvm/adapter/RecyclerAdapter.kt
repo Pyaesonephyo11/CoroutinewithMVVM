@@ -8,9 +8,9 @@ import com.example.coroutinewithmvvm.databinding.ItemLayoutBinding
 import com.example.coroutinewithmvvm.model.JsonData
 
 class RecyclerAdapter: RecyclerView.Adapter<MainViewHolder>() {
-    var movies = mutableListOf<JsonData>()
-    fun setData(movies: List<JsonData>) {
-        this.movies = movies.toMutableList()
+    var data = mutableListOf<JsonData>()
+    fun setData(data: List<JsonData>) {
+        this.data = data.toMutableList()
         notifyDataSetChanged()
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
@@ -19,12 +19,12 @@ class RecyclerAdapter: RecyclerView.Adapter<MainViewHolder>() {
         return MainViewHolder(binding)
     }
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
-        val movie = movies[position]
-        holder.binding.name.text = movie.title.substring(0,10)
-        Glide.with(holder.itemView.context).load(movie.url).into(holder.binding.imageview)
+        val data = data[position]
+        holder.binding.name.text = data.title.substring(0,10)
+        Glide.with(holder.itemView.context).load(data.url).into(holder.binding.imageview)
     }
     override fun getItemCount(): Int {
-        return movies.size
+        return data.size
     }
 }
 class MainViewHolder(val binding:ItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
